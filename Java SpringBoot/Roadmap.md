@@ -1,4 +1,29 @@
 # 🚀 Java Spring Boot Engineer Roadmap
+
+```
+1. Core Java
+2. OOP
+3. Collections
+4. Exception Handling
+5. Java 8 Features
+6. Multithreading
+7. SQL
+8. Maven
+9. Git & GitHub
+10. Spring Core
+11. Spring Boot
+12. REST API
+13. JPA/Hibernate
+14. Spring Security + JWT
+15. Testing
+16. Microservices
+17. Redis
+18. Kafka
+19. Docker
+20. Kubernetes
+21. CI/CD
+22. System Design
+```
 ## Complete Industry-Ready Learning Path
 
 > Goal: Become a highly skilled Java Spring Boot Engineer capable of developing, securing, testing, deploying, and maintaining enterprise-grade backend applications.
