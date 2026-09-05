@@ -957,3 +957,1199 @@ test()
 
 One method should perform one task.
 
+# Types of Java Methods: Static Methods, Instance Methods, Constructors, Getters & Setters, and Instance Variables
+
+> This module provides a complete understanding of some of the most important Java class components. These concepts are heavily used in Core Java, OOP, Spring Boot, Hibernate, Microservices, and Enterprise Application Development.
+
+---
+
+# Table of Contents
+
+1. Introduction
+2. Static Methods
+3. Instance Methods
+4. Static vs Instance Methods
+5. Constructor Methods
+6. Types of Constructors
+7. Constructor Chaining
+8. this Keyword
+9. Getters and Setters
+10. Instance Variables
+11. Memory Allocation
+12. Real-World Spring Boot Examples
+13. Best Practices
+14. Interview Questions
+
+---
+
+# Introduction
+
+A Java class can contain:
+
+```text
+1. Variables
+2. Methods
+3. Constructors
+4. Nested Classes
+5. Blocks
+```
+
+Example:
+
+```java
+public class Employee {
+
+    private String name;      // Instance Variable
+
+    public Employee() {       // Constructor
+
+    }
+
+    public void work() {      // Instance Method
+
+    }
+
+    public static void companyPolicy() { // Static Method
+
+    }
+}
+```
+
+---
+
+# 1. Static Methods
+
+## What is a Static Method?
+
+A static method belongs to the class itself rather than an object.
+
+Because it belongs to the class, we can call it without creating an object.
+
+Syntax:
+
+```java
+class Demo {
+
+    static void display() {
+
+        System.out.println("Static Method");
+
+    }
+}
+```
+
+Calling:
+
+```java
+Demo.display();
+```
+
+Output:
+
+```text
+Static Method
+```
+
+---
+
+# Why Static Methods Exist
+
+Suppose a method does not require object-specific data.
+
+Example:
+
+```java
+calculateCircleArea()
+calculateTax()
+calculateInterest()
+```
+
+Creating objects would be unnecessary.
+
+Static methods solve this problem.
+
+---
+
+# Static Method Memory
+
+```text
+Method Area
+    |
+    ---> Static Methods
+```
+
+Static methods are loaded when the class is loaded.
+
+Only one copy exists.
+
+---
+
+# Example
+
+```java
+public class Calculator {
+
+    static int add(int a, int b) {
+
+        return a + b;
+
+    }
+
+    public static void main(String[] args) {
+
+        int result = Calculator.add(10, 20);
+
+        System.out.println(result);
+
+    }
+}
+```
+
+Output:
+
+```text
+30
+```
+
+---
+
+# Rules of Static Methods
+
+## Static Methods Can Access
+
+✅ Static Variables
+
+✅ Other Static Methods
+
+Example:
+
+```java
+class Demo {
+
+    static int count = 100;
+
+    static void display() {
+
+        System.out.println(count);
+
+    }
+}
+```
+
+---
+
+## Static Methods Cannot Directly Access Instance Variables
+
+Wrong:
+
+```java
+class Employee {
+
+    String name = "Pawan";
+
+    static void display() {
+
+        System.out.println(name);
+
+    }
+}
+```
+
+Error:
+
+```text
+Cannot access non-static field from static context
+```
+
+Reason:
+
+Static methods execute without object creation.
+
+---
+
+# Real Examples of Static Methods
+
+```java
+Math.sqrt()
+Math.max()
+Math.min()
+Integer.parseInt()
+Collections.sort()
+```
+
+Example:
+
+```java
+System.out.println(Math.sqrt(25));
+```
+
+Output:
+
+```text
+5.0
+```
+
+---
+
+# Advantages of Static Methods
+
+✅ Faster access
+
+✅ Shared logic
+
+✅ Memory efficient
+
+✅ No object required
+
+✅ Ideal for utility classes
+
+---
+
+# 2. Instance Methods
+
+## What is an Instance Method?
+
+An instance method belongs to an object, not the class.
+
+Object creation is mandatory.
+
+Example:
+
+```java
+class Employee {
+
+    void work() {
+
+        System.out.println("Working");
+
+    }
+
+}
+```
+
+Call:
+
+```java
+Employee emp = new Employee();
+
+emp.work();
+```
+
+Output:
+
+```text
+Working
+```
+
+---
+
+# Instance Method Memory
+
+```text
+Heap
+ |
+ ---> Object
+          |
+          ---> Instance Methods Access Object State
+```
+
+---
+
+# Example
+
+```java
+class Student {
+
+    String name = "Pawan";
+
+    void display() {
+
+        System.out.println(name);
+
+    }
+
+}
+```
+
+Call:
+
+```java
+Student s = new Student();
+
+s.display();
+```
+
+Output:
+
+```text
+Pawan
+```
+
+---
+
+# Why Instance Methods Are Important
+
+Instance methods can access:
+
+```text
+Object Variables
+Object State
+Object Behavior
+```
+
+This is the foundation of OOP.
+
+---
+
+# Real Example
+
+```java
+class BankAccount {
+
+    String accountHolder;
+    double balance;
+
+    void deposit(double amount) {
+
+        balance += amount;
+
+    }
+}
+```
+
+Each account has different balance values.
+
+Therefore object-specific methods are required.
+
+---
+
+# Static vs Instance Methods
+
+## Static Method
+
+```java
+static void display()
+```
+
+Characteristics:
+
+```text
+Belongs to Class
+No Object Required
+Loaded Once
+Memory Efficient
+```
+
+---
+
+## Instance Method
+
+```java
+void display()
+```
+
+Characteristics:
+
+```text
+Belongs To Object
+Requires Object
+Uses Instance Variables
+Supports OOP
+```
+
+---
+
+# 3. Constructor Method
+
+## What is Constructor?
+
+A constructor is a special method used to initialize an object.
+
+Constructor executes automatically when object is created.
+
+---
+
+# Constructor Syntax
+
+```java
+class Student {
+
+    Student() {
+
+        System.out.println("Constructor Called");
+
+    }
+
+}
+```
+
+Object Creation:
+
+```java
+Student s = new Student();
+```
+
+Output:
+
+```text
+Constructor Called
+```
+
+---
+
+# Characteristics of Constructors
+
+✅ Same name as class
+
+✅ No return type
+
+✅ Automatically called
+
+✅ Used for initialization
+
+✅ Can be overloaded
+
+---
+
+# Constructor vs Method
+
+Constructor:
+
+```java
+Student() {
+
+}
+```
+
+Method:
+
+```java
+void Student() {
+
+}
+```
+
+Major Difference:
+
+```text
+Constructor executes automatically.
+
+Method must be called explicitly.
+```
+
+---
+
+# Types of Constructors
+
+## 1. Default Constructor
+
+Provided by compiler automatically.
+
+Example:
+
+```java
+class Employee {
+
+}
+```
+
+Compiler internally creates:
+
+```java
+Employee() {
+
+}
+```
+
+---
+
+## 2. No-Argument Constructor
+
+Created by programmer.
+
+```java
+class Employee {
+
+    Employee() {
+
+        System.out.println("Employee Created");
+
+    }
+
+}
+```
+
+---
+
+## 3. Parameterized Constructor
+
+Accepts values.
+
+```java
+class Employee {
+
+    String name;
+
+    Employee(String name) {
+
+        this.name = name;
+
+    }
+
+}
+```
+
+Usage:
+
+```java
+Employee emp =
+        new Employee("Pawan");
+```
+
+---
+
+# Constructor Overloading
+
+Multiple constructors inside same class.
+
+```java
+class Employee {
+
+    Employee() {
+
+    }
+
+    Employee(String name) {
+
+    }
+
+    Employee(String name,int age) {
+
+    }
+}
+```
+
+This is:
+
+```text
+Constructor Overloading
+```
+
+---
+
+# Constructor Chaining
+
+One constructor calls another constructor.
+
+Syntax:
+
+```java
+this();
+```
+
+Example:
+
+```java
+class Employee {
+
+    Employee() {
+
+        System.out.println("Default");
+
+    }
+
+    Employee(String name) {
+
+        this();
+
+        System.out.println(name);
+
+    }
+
+}
+```
+
+Output:
+
+```text
+Default
+Pawan
+```
+
+---
+
+# this Keyword
+
+Represents current object.
+
+Example:
+
+```java
+class Employee {
+
+    String name;
+
+    Employee(String name) {
+
+        this.name = name;
+
+    }
+
+}
+```
+
+---
+
+# Without this
+
+```java
+name = name;
+```
+
+Problem:
+
+```text
+Local Variable shadows Instance Variable.
+```
+
+---
+
+# With this
+
+```java
+this.name = name;
+```
+
+Correctly assigns value.
+
+---
+
+# Constructor Execution Flow
+
+```text
+Object Creation
+      |
+      ▼
+Memory Reserved
+      |
+      ▼
+Constructor Executed
+      |
+      ▼
+Object Fully Initialized
+```
+
+---
+
+# 4. Getters and Setters
+
+## What are Getters and Setters?
+
+Methods used to read and modify private variables.
+
+They are part of:
+
+```text
+Encapsulation
+```
+
+---
+
+# Why They Are Needed
+
+Bad Practice:
+
+```java
+class Employee {
+
+    public String name;
+
+}
+```
+
+Anyone can update value.
+
+---
+
+Good Practice:
+
+```java
+class Employee {
+
+    private String name;
+
+}
+```
+
+Now direct access is blocked.
+
+---
+
+# Getter Method
+
+Returns value.
+
+Example:
+
+```java
+public String getName() {
+
+    return name;
+
+}
+```
+
+---
+
+# Setter Method
+
+Updates value.
+
+Example:
+
+```java
+public void setName(String name) {
+
+    this.name = name;
+
+}
+```
+
+---
+
+# Complete Example
+
+```java
+class Employee {
+
+    private String name;
+
+    public String getName() {
+
+        return name;
+
+    }
+
+    public void setName(String name) {
+
+        this.name = name;
+
+    }
+}
+```
+
+Usage:
+
+```java
+Employee emp = new Employee();
+
+emp.setName("Pawan");
+
+System.out.println(emp.getName());
+```
+
+Output:
+
+```text
+Pawan
+```
+
+---
+
+# Getter & Setter Benefits
+
+✅ Data Hiding
+
+✅ Validation
+
+✅ Security
+
+✅ Controlled Access
+
+✅ Encapsulation
+
+---
+
+# Validation Example
+
+```java
+public void setAge(int age) {
+
+    if(age > 0) {
+
+        this.age = age;
+
+    }
+
+}
+```
+
+Invalid values can be blocked.
+
+---
+
+# 5. Instance Variables
+
+## What are Instance Variables?
+
+Variables declared inside a class but outside methods.
+
+Example:
+
+```java
+class Employee {
+
+    String name;
+    int age;
+
+}
+```
+
+---
+
+# Characteristics
+
+✅ Belong to object
+
+✅ Stored in Heap
+
+✅ Get default values
+
+✅ Accessible through object
+
+---
+
+# Example
+
+```java
+class Employee {
+
+    String name = "Pawan";
+
+}
+```
+
+Object:
+
+```java
+Employee e = new Employee();
+```
+
+Object receives:
+
+```text
+name = Pawan
+```
+
+---
+
+# Default Values
+
+## Numeric
+
+```java
+int age;
+```
+
+Default:
+
+```text
+0
+```
+
+---
+
+## double
+
+```java
+double salary;
+```
+
+Default:
+
+```text
+0.0
+```
+
+---
+
+## boolean
+
+```java
+boolean active;
+```
+
+Default:
+
+```text
+false
+```
+
+---
+
+## String
+
+```java
+String name;
+```
+
+Default:
+
+```text
+null
+```
+
+---
+
+# Instance Variable Memory
+
+Example:
+
+```java
+class Employee {
+
+    String name;
+}
+```
+
+Object Creation:
+
+```java
+Employee emp =
+        new Employee();
+```
+
+Memory:
+
+```text
+STACK
+-----
+emp
+
+HEAP
+-----
+Employee Object
+    |
+    ---> name
+```
+
+Reference:
+
+```java
+emp
+```
+
+stored in Stack.
+
+Object stored in Heap.
+
+---
+
+# Real Spring Boot Example
+
+Entity Class
+
+```java
+@Entity
+public class Employee {
+
+    @Id
+    private Long id;
+
+    private String name;
+
+    private Double salary;
+
+    public String getName() {
+
+        return name;
+
+    }
+
+    public void setName(String name) {
+
+        this.name = name;
+
+    }
+}
+```
+
+Here:
+
+```text
+id
+name
+salary
+```
+
+are Instance Variables.
+
+```text
+getName()
+setName()
+```
+
+are Instance Methods.
+
+Constructor initializes object.
+
+---
+
+# Best Practices
+
+## Variables
+
+✅ Keep private
+
+```java
+private String name;
+```
+
+---
+
+## Use Constructor Initialization
+
+```java
+Employee(String name) {
+
+    this.name = name;
+
+}
+```
+
+---
+
+## Use Getters and Setters
+
+```java
+getName()
+
+setName()
+```
+
+---
+
+## Keep Utility Methods Static
+
+```java
+MathUtil.add()
+```
+
+---
+
+## Follow Java Naming Conventions
+
+Class:
+
+```java
+EmployeeService
+```
+
+Variable:
+
+```java
+employeeName
+```
+
+Method:
+
+```java
+calculateSalary()
+```
+
+---
+
+# Interview Questions
+
+## What is a Static Method?
+
+A method that belongs to the class and can be called without creating an object.
+
+---
+
+## What is an Instance Method?
+
+A method that belongs to an object and requires an object for execution.
+
+---
+
+## What is a Constructor?
+
+A special method used to initialize objects.
+
+---
+
+## Can Constructors Be Overloaded?
+
+Yes.
+
+Multiple constructors with different parameters are allowed.
+
+---
+
+## Why Use Getters and Setters?
+
+To implement encapsulation and controlled access.
+
+---
+
+## What are Instance Variables?
+
+Variables declared inside a class but outside methods.
+
+---
+
+## Where are Instance Variables Stored?
+
+Inside Heap Memory as part of the object.
+
+---
+
+## Difference Between Static and Instance Methods?
+
+Static:
+
+```text
+Belongs To Class
+```
+
+Instance:
+
+```text
+Belongs To Object
+```
+
+---
+
+# Mastery Checklist
+
+✅ Static Methods
+
+✅ Instance Methods
+
+✅ Constructor Fundamentals
+
+✅ Constructor Overloading
+
+✅ Constructor Chaining
+
+✅ this Keyword
+
+✅ Getters
+
+✅ Setters
+
+✅ Encapsulation
+
+✅ Instance Variables
+
+✅ Heap Memory
+
+✅ Stack Memory
+
+✅ JVM Object Creation
+
+✅ Real Enterprise Code Structure
+
+These concepts are fundamental building blocks for OOP, Hibernate, Spring Framework, Spring Boot, JPA, and Microservices.
+
