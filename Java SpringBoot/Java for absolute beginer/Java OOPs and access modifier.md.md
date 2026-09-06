@@ -58,12 +58,14 @@ class Employee {
 3. Polymorphism
 4. Abstraction
 ```
+<img width="1353" height="1001" alt="image" src="https://github.com/user-attachments/assets/898db10c-e8f6-4b9c-98cd-8886c66f97c5" />
 
 These are asked in almost every Java interview.
 
 ---
 
 # 1. Encapsulation
+<img width="1528" height="1016" alt="image" src="https://github.com/user-attachments/assets/8ac497fa-c7cf-4ce0-ac32-d4ce91697b9c" />
 
 # What is Encapsulation?
 
