@@ -1174,42 +1174,782 @@ which are built around interfaces.
 ✅ Spring Boot OOP Design
 
 ---
+# Java Access Modifiers - Complete Industry Ready Study Guide
 
-# Next Learning Path
+> Access Modifiers control the visibility and accessibility of classes, variables, methods, constructors, and nested classes in Java. They are the foundation of Encapsulation, Security, OOP Design, Clean Code Architecture, Spring Boot Development, and Enterprise Application Development.
+
+---
+
+# Table of Contents
+
+1. Introduction to Access Modifiers
+2. Why Access Modifiers are Needed
+3. Types of Access Modifiers
+4. Private Access Modifier
+5. Default Access Modifier
+6. Protected Access Modifier
+7. Public Access Modifier
+8. Access Modifiers and Classes
+9. Access Modifiers and Methods
+10. Access Modifiers and Variables
+11. Access Modifiers and Constructors
+12. Access Modifiers with Inheritance
+13. Access Modifiers with Packages
+14. Access Modifiers in Spring Boot
+15. Access Control Matrix
+16. Best Practices
+17. Interview Questions
+
+---
+
+# What are Access Modifiers?
+
+## Definition
+
+Access Modifiers are special Java keywords used to control the visibility and accessibility of class members.
+
+They answer three questions:
 
 ```text
-01. Collections Framework
-    ├── ArrayList
-    ├── LinkedList
-    ├── Vector
-    ├── Stack
-    ├── Queue
-    ├── PriorityQueue
+Who can access?
 
-02. Set Framework
-    ├── HashSet
-    ├── LinkedHashSet
-    ├── TreeSet
+From where?
 
-03. Map Framework
-    ├── HashMap
-    ├── LinkedHashMap
-    ├── TreeMap
-    ├── ConcurrentHashMap
-
-04. Exception Handling
-
-05. Generics
-
-06. Multithreading
-
-07. Java 8 Features
-
-08. Streams API
-
-09. JDBC
-
-10. Spring Boot
+Under what conditions?
 ```
 
-This OOP module is one of the most important topics in Core Java. Nearly every Spring Boot application, design pattern, framework, and enterprise backend system depends heavily on these concepts.
+---
+
+# Real Life Example
+
+Consider a Bank Account.
+
+```java
+class BankAccount {
+
+    double balance;
+
+}
+```
+
+Anyone can do:
+
+```java
+account.balance = -500000;
+```
+
+This is dangerous.
+
+Instead:
+
+```java
+private double balance;
+```
+
+Now access is controlled.
+
+---
+
+# Why Access Modifiers are Needed
+
+Without Access Modifiers:
+
+```text
+No Security
+
+No Encapsulation
+
+No Data Protection
+
+Poor Design
+```
+
+Benefits:
+
+✅ Data Hiding
+
+✅ Security
+
+✅ Encapsulation
+
+✅ Controlled Access
+
+✅ Better Maintenance
+
+✅ Loose Coupling
+
+✅ Enterprise Design
+
+---
+
+# Types of Access Modifiers
+
+Java provides four access modifiers:
+
+```text
+1. private
+2. default
+3. protected
+4. public
+```
+
+Visibility Order:
+
+```text
+private
+    ↓
+default
+    ↓
+protected
+    ↓
+public
+```
+
+---
+
+# Memory Trick
+
+```text
+private   → Only Me
+
+default   → My Package
+
+protected → My Family (Inheritance)
+
+public    → Entire World
+```
+
+---
+
+# 1. Private Access Modifier
+
+## Definition
+
+Private members can only be accessed inside the same class.
+
+Most restrictive access modifier.
+
+Syntax:
+
+```java
+private String name;
+```
+
+---
+
+# Example
+
+```java
+class Employee {
+
+    private String name = "Pawan";
+
+    public void display() {
+
+        System.out.println(name);
+
+    }
+
+}
+```
+
+Output:
+
+```text
+Pawan
+```
+
+Allowed because:
+
+```text
+Access occurs inside same class
+```
+
+---
+
+# Invalid Access
+
+```java
+class Test {
+
+    public static void main(String[] args) {
+
+        Employee emp =
+                new Employee();
+
+        System.out.println(emp.name);
+
+    }
+
+}
+```
+
+Output:
+
+```text
+Compilation Error
+```
+
+---
+
+# Access Through Getter & Setter
+
+```java
+class Employee {
+
+    private String name;
+
+    public String getName() {
+
+        return name;
+
+    }
+
+    public void setName(String name) {
+
+        this.name = name;
+
+    }
+
+}
+```
+
+---
+
+# Advantages of Private
+
+✅ Data Security
+
+✅ Encapsulation
+
+✅ Validation
+
+✅ Prevent Direct Modification
+
+✅ Better Design
+
+---
+
+# Real Spring Boot Example
+
+```java
+@Entity
+public class Employee {
+
+    private String employeeName;
+
+    private Double salary;
+
+}
+```
+
+Almost all entity fields are private.
+
+---
+
+# When to Use Private
+
+Use for:
+
+```text
+Salary
+
+Password
+
+PIN
+
+Balance
+
+Sensitive Data
+
+Internal Methods
+```
+
+---
+
+# 2. Default Access Modifier
+
+## Definition
+
+When no access modifier is specified.
+
+Example:
+
+```java
+class Employee {
+
+}
+```
+
+or
+
+```java
+String name;
+```
+
+---
+
+# Accessibility
+
+```text
+Same Class      ✅
+
+Same Package    ✅
+
+Different Package ❌
+
+Child Class Outside Package ❌
+```
+
+---
+
+# Example
+
+Employee.java
+
+```java
+package employee;
+
+class Employee {
+
+    void show() {
+
+        System.out.println("Employee");
+
+    }
+
+}
+```
+
+---
+
+Test.java
+
+```java
+package employee;
+
+class Test {
+
+    public static void main(String[] args) {
+
+        Employee e =
+                new Employee();
+
+        e.show();
+
+    }
+
+}
+```
+
+Output:
+
+```text
+Employee
+```
+
+---
+
+# Outside Package Access
+
+Package:
+
+```text
+company
+```
+
+Trying to use:
+
+```java
+import employee.Employee;
+```
+
+Error:
+
+```text
+Cannot Access
+```
+
+---
+
+# Why Default Access Exists
+
+Useful for:
+
+```text
+Internal Classes
+
+Helper Utilities
+
+Package-Level Services
+
+Shared Package Components
+```
+
+---
+
+# Real Project Example
+
+```text
+service/
+├── ValidationUtil
+├── DateUtil
+├── CommonHelper
+```
+
+These helper classes often remain package-private.
+
+---
+
+# 3. Protected Access Modifier
+
+## Definition
+
+Protected members are accessible:
+
+```text
+Inside Same Class
+
+Inside Same Package
+
+Inside Child Classes
+
+Child Classes in Different Packages
+```
+
+---
+
+# Example
+
+```java
+class Animal {
+
+    protected void sound() {
+
+        System.out.println("Animal Sound");
+
+    }
+
+}
+```
+
+---
+
+# Child Class Access
+
+```java
+class Dog extends Animal {
+
+    void test() {
+
+        sound();
+
+    }
+
+}
+```
+
+Output:
+
+```text
+Animal Sound
+```
+
+---
+
+# Cross Package Child Access
+
+Package:
+
+```text
+animals
+```
+
+Parent:
+
+```java
+package animals;
+
+public class Animal {
+
+    protected void eat() {
+
+        System.out.println("Eating");
+
+    }
+
+}
+```
+
+---
+
+Package:
+
+```text
+pets
+```
+
+Child:
+
+```java
+package pets;
+
+import animals.Animal;
+
+public class Dog extends Animal {
+
+    public void test() {
+
+        eat();
+
+    }
+
+}
+```
+
+Works successfully.
+
+---
+
+# Why Protected Exists
+
+Supports:
+
+```text
+Inheritance
+
+Framework Development
+
+Extensibility
+
+Reusable Components
+```
+
+---
+
+# Real Spring Framework Example
+
+Many Spring framework classes expose:
+
+```java
+protected void configure()
+```
+
+for customization.
+
+---
+
+# When to Use Protected
+
+Use when:
+
+```text
+Child Classes Need Access
+
+Framework Extensibility Required
+
+Template Design Pattern
+```
+
+---
+
+# 4. Public Access Modifier
+
+## Definition
+
+Public members can be accessed from anywhere.
+
+Least restrictive modifier.
+
+---
+
+# Example
+
+```java
+public class Employee {
+
+}
+```
+
+---
+
+# Public Method
+
+```java
+public void display() {
+
+}
+```
+
+Accessible from:
+
+```text
+Same Class
+
+Same Package
+
+Different Package
+
+Any Module
+```
+
+---
+
+# Example
+
+Employee.java
+
+```java
+package employee;
+
+public class Employee {
+
+    public void show() {
+
+        System.out.println("Employee");
+
+    }
+
+}
+```
+
+---
+
+Another Package
+
+```java
+package company;
+
+import employee.Employee;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        Employee e =
+                new Employee();
+
+        e.show();
+
+    }
+
+}
+```
+
+Output:
+
+```text
+Employee
+```
+
+---
+
+# When to Use Public
+
+Use when functionality should be available globally.
+
+Examples:
+
+```java
+System.out.println()
+
+Math.sqrt()
+
+ArrayList.add()
+
+HashMap.put()
+```
+
+---
+
+# Access Modifiers and Classes
+
+## Top-Level Class Rules
+
+Allowed:
+
+```java
+public class Employee
+```
+
+```java
+class Employee
+```
+
+(default)
+
+---
+
+Not Allowed:
+
+```java
+private class Employee
+```
+
+```java
+protected class Employee
+```
+
+Compiler Error.
+
+---
+
+# Why?
+
+Java allows only:
+
+```text
+public
+
+default
+```
+
+for top-level classes.
+
+---
+
+# Access Modifiers and Variables
+
+Variables can have all four modifiers.
+
+Example:
+
+```java
+private String password;
+
+String city;
+
+protected String name;
+
+public String company;
+```
+
+---
+
+# Access Modifiers and Methods
+
+Methods can have all four modifiers.
+
+Example:
+
+```java
+private void validate();
+
+void save();
+
+protected void initialize();
+
+public void display();
+```
+
+---
+
+# Access Modifiers and Constructors
+
+Constructors also support access modifiers.
+
+---
+
+# Public Constructor
+
+```java
