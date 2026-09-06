@@ -363,6 +363,7 @@ Causes Diamond Problem.
 ---
 
 # 3. Polymorphism
+<img width="1482" height="1000" alt="image" src="https://github.com/user-attachments/assets/5fb15c81-fa9f-486c-aaa4-036c3f81daed" />
 
 # What is Polymorphism?
 
@@ -394,6 +395,9 @@ pay()
 ```
 
 Different behavior.
+
+<img width="1390" height="898" alt="image" src="https://github.com/user-attachments/assets/2ab6c546-a1fd-4b45-bf1b-18b9e4787af5" />
+
 
 ---
 
@@ -977,6 +981,7 @@ Most Spring components use interfaces.
 ---
 
 # Abstract Class vs Interface
+<img width="1244" height="432" alt="image" src="https://github.com/user-attachments/assets/51baba96-a1e3-462b-902e-8deccbb9819e" />
 
 ## Abstract Class
 
